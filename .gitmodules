@@ -1,0 +1,3 @@
+[submodule "priv/iso-639"]
+	path = priv/iso-639
+	url = git@github.com:haliaeetus/iso-639.git
