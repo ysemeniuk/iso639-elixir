@@ -25,10 +25,11 @@ defmodule ISO639 do
   """
   @spec to_iso639_1(language_code :: String.t()) :: String.t() | nil
   @json_639_2
+  |> Enum.uniq_by(fn({_, v}) -> v end)
   |> Enum.each(fn {_key, %{"639-2" => code_639_2} = map} ->
     code_639_1 = Map.get(map, "639-1")
     code_639_2B = Map.get(map, "639-2/B")
-    def to_iso639_1(unquote(code_639_2)), do: unquote(code_639_1)
+    def(to_iso639_1(unquote(code_639_2)), do: unquote(code_639_1))
     if code_639_2B, do: def(to_iso639_1(unquote(code_639_2B)), do: unquote(code_639_1))
     if code_639_1, do: def(to_iso639_1(unquote(code_639_1)), do: unquote(code_639_1))
   end)
@@ -56,6 +57,7 @@ defmodule ISO639 do
   """
   @spec to_iso639_2(language_code :: String.t()) :: String.t() | nil
   @json_639_2
+  |> Enum.uniq_by(fn({_, v}) -> v end)
   |> Enum.each(fn {_key, %{"639-2" => code_639_2} = map} ->
     code_639_1 = Map.get(map, "639-1")
     code_639_2B = Map.get(map, "639-2/B")
