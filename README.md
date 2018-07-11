@@ -19,5 +19,3 @@ end
 After adding ISO639 as a dependency, run `mix deps.get` to install it.
 
 Documentation can be found at [https://hexdocs.pm/iso639](https://hexdocs.pm/iso639).
-
-## Library is NOT finished
