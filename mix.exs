@@ -36,7 +36,8 @@ defmodule ISO639.MixProject do
   defp package() do
     [
       licenses: ["Apache 2.0"],
-      links: %{"GitHub" => "https://github.com/ysemeniuk/iso639-elixir.git"}
+      links: %{"GitHub" => "https://github.com/ysemeniuk/iso639-elixir.git"},
+      maintainers: ["Yurii Semeniuk"]
     ]
   end
 end
