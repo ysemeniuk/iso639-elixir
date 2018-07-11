@@ -11,11 +11,11 @@ To use ISO639 in your Mix projects, first add ISO639 as a dependency.
 ```elixir
 def deps do
   [
-    {:iso639, "~> 0.1.0"}
+    {:iso639_elixir, "~> 0.1.0"}
   ]
 end
 ```
 
 After adding ISO639 as a dependency, run `mix deps.get` to install it.
 
-Documentation can be found at [https://hexdocs.pm/iso639](https://hexdocs.pm/iso639).
+Documentation can be found at [hexdocs](https://hexdocs.pm/iso639_elixir).
