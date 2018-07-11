@@ -5,10 +5,13 @@ defmodule ISO639.MixProject do
     [
       app: :iso639_elixir,
       name: "ISO639",
+      description: description(),
+      package: package(),
       version: "0.1.0",
-      elixir: "~> 1.6",
+      elixir: "~> 1.1",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      source_url: "https://github.com/ysemeniuk/iso639-elixir"
     ]
   end
 
@@ -23,6 +26,17 @@ defmodule ISO639.MixProject do
   defp deps do
     [
       {:poison, "~> 3.0"}
+    ]
+  end
+
+  defp description() do
+    "Elixir library for converting language code from one version of ISO 639 standard to another and back"
+  end
+
+  defp package() do
+    [
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/ysemeniuk/iso639-elixir.git"}
     ]
   end
 end
