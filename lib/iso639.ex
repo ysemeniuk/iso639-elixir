@@ -72,4 +72,39 @@ defmodule ISO639 do
   end)
 
   def to_iso639_2(_), do: nil
+
+  @doc """
+  expects as input downcased ISO 639-1, ISO 639-2 or ISO 639-2/B language code and returns ISO 639-2 code if it exists in standard and `nil` if not. If function receives as input ISO 639-2 language code, it's returned unchanged. ISO 639-2/B will be changed to ISO 639-2
+
+  ## Examples
+
+      iex> ISO639.to_iso639_2b("sag")
+      "sag"
+
+      iex> ISO639.to_iso639_2b("sg")
+      "sag"
+
+      iex> ISO639.to_iso639_2b("ch")
+      "chi"
+
+      iex> ISO639.to_iso639_2b("zho")
+      "chi"
+
+      iex> ISO639.to_iso639_2b("ud")
+      nil
+
+  """
+  @spec to_iso639_2b(language_code :: String.t()) :: String.t() | nil
+
+  @json_639_2
+  |> Enum.uniq_by(fn {_, v} -> v end)
+  |> Enum.each(fn {_key, %{"639-2" => code_639_2A} = map} ->
+    code_639_1 = Map.get(map, "639-1")
+    code_639_2B = Map.get(map, "639-2/B")
+    if code_639_1, do: def(to_iso639_2b(unquote(code_639_1)), do: unquote(code_639_2B))
+    if code_639_2A, do: def(to_iso639_b(unquote(code_639_2A)), do: unquote(code_639_2B))
+    def to_iso639_2b(unquote(code_639_2A)), do: unquote(code_639_2B)
+  end)
+
+  def to_iso639_2b(_), do: nil
 end
