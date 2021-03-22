@@ -25,6 +25,9 @@ iso639-*.tar
 # Ignore OS X index files
 .DS_Store
 
+# ElixirLS folder
+.elixir_ls
+
 # IDE files
 .vscode
 .idea
