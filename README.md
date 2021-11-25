@@ -11,7 +11,8 @@ To use ISO639 in your Mix projects, first add ISO639 as a dependency, as well as
 ```elixir
 def deps do
   [
-    {:iso639_elixir, "~> 0.2.0"}
+    {:iso639_elixir, "~> 0.2.0", submodules: true},
+    {:jason, "~> 1.0"}
   ]
 end
 ```
@@ -23,8 +24,8 @@ You can use a different JSON library for decoding of JSON file with dictionary o
 ```elixir
 def deps do
   [
-    {:iso639_elixir, "~> 0.2.0"},
-    {:jason, "~> 1.0"}
+    {:iso639_elixir, "~> 0.2.0", submodules: true},
+    {:poison, "~> 5.0"}
   ]
 end
 ```
@@ -33,20 +34,13 @@ And configure which library to use in your config file. Default is [Jason](https
 
 ```elixir
 # config/config.exs
-config :iso639_elixir, :json_library, Jason
+config :iso639_elixir, :json_library, Poison
 ```
 
 ### Download
 
 After adding ISO639 as a dependency, run `mix deps.get` to install it.
 
-### Git submodule
-
-Download git submodule with dictionary of languages with:
-
-```bash
-git submodule init && git submodule update
-```
 
 ## Docs
 
