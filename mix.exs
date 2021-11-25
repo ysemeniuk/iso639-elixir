@@ -7,8 +7,8 @@ defmodule ISO639.MixProject do
       name: "ISO639",
       description: description(),
       package: package(),
-      version: "0.1.1",
-      elixir: "~> 1.1",
+      version: "0.2.1",
+      elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       source_url: "https://github.com/ysemeniuk/iso639-elixir"
@@ -25,7 +25,7 @@ defmodule ISO639.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:poison, "~> 3.0"},
+      {:poison, "~> 4.0", optional: true},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
