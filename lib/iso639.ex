@@ -10,6 +10,36 @@ defmodule ISO639 do
               |> Application.get_env(:iso639_elixir, :json_library, Jason).decode!()
               |> Enum.uniq_by(fn {_, v} -> v end)
 
+  @list_of_639_2 Enum.map(@json_639_2, fn {_, v} -> Map.get(v, "639-2") end) |> Enum.uniq() |> Enum.sort()
+  @list_of_639_1 Enum.map(@json_639_2, fn {_, v} -> Map.get(v, "639-1") end)
+                 |> Enum.uniq()
+                 |> Enum.reject(&is_nil(&1))
+                 |> Enum.sort()
+
+  @doc """
+  List of available ISO-639-2 language codes.
+
+  ## Exmaples
+
+      > ISO639.iso639_2_codes()
+      ["aar", "abk", "ace", "ach", "ada", "ady", "afa", "afh", "afr", "ain", "aka",
+       "akk", "ale", "alg", "alt", "amh", "ang", "anp", "apa", "ara", "arc", ...]
+  """
+  @spec iso639_2_codes() :: list(String.t())
+  def iso639_2_codes, do: @list_of_639_2
+
+  @doc """
+  List of available ISO-639-1 language codes.
+
+  ## Exmaples
+
+      > ISO639.iso639_1_codes()
+      ["aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba",
+      "be", "bg", "bh", "bi", "bm", "bn", "bo", "br", "bs", "ca", "ce", "ch", ...]
+  """
+  @spec iso639_1_codes() :: list(String.t())
+  def iso639_1_codes, do: @list_of_639_1
+
   @doc """
   expects as input downcased ISO 639-2 or ISO 639-2/B language code and returns ISO 639-1 code if it exists in standard and `nil` if not. If function receives as input ISO 639-1 language code, it's returned unchanged.
 
